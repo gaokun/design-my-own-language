@@ -1,0 +1,8 @@
+{
+  "name": "design-my-own-language",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/gaokun/design-my-own-language.git",
+  "author": "Ken <gaokun@nextop.cn>",
+  "license": "MIT"
+}
