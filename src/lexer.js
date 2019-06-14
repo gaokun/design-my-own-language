@@ -1,5 +1,6 @@
 const TokenFactory = require('./token_factory');
 const EOLToken = require('./eol_token');
+const OperatorToken = require('./operator_token');
 
 class Lexer {
   constructor(source) {
@@ -47,6 +48,19 @@ class Lexer {
             } else {
               // string begin
               inString = true;
+            }
+            break;
+          case '=':
+          case '+':
+          case '-':
+          case '*':
+          case '/':
+          case '%':
+          case '>':
+          case '<':
+            if (!inString) {
+              this.tokenList.push(new OperatorToken(lineNo, char));
+              inToken = false;
             }
             break;
           default:

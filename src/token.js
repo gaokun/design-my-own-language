@@ -4,6 +4,7 @@ class Token {
     this.isNumber = false;
     this.isString = false;
     this.isIdentifier = false;
+    this.isOperator = false;
   }
 }
 

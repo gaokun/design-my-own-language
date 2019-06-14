@@ -1,21 +1,49 @@
-const sourceText = require('./source');
+const ASTree = require('./astree');
+const ASTLeaf = require('./ast_leaf');
+const NumberToken = require('./number_token');
+const StringToken = require('./string_token');
+const IdToken = require('./id_token');
+const EOLToken = require('./eol_token');
 
 class Parser {
-  constructor(source) {
+  constructor() {
   }
-  parse() {
-  }
-  _findTokenBySymbol(symbol) {
-    let ret;
-    for (let token of this.tokenList) {
-      if (token.symbol === symbol) {
-        ret = token;
-        break;
+  parse(tokens) {
+    this.asTree = new ASTree();
+    let astLeaf;
+    let preToken;
+    let isSetValueStatement = false;
+    let mountASTLeaf; // 待挂子叶
+    for (let token of tokens) {
+      if (token.isEOLToken) {
+        this.asTree.append(astLeaf);
+        isSetValueStatement = false;
+        preToken = null;
+        astLeaf = null;
+      } else if (token.isIdentifier) {
+        if (!astLeaf) {
+          astLeaf = new ASTLeaf();
+          astLeaf.left = new ASTLeaf(token);
+        } else if (astLeaf.operator) {
+          astLeaf.right = new ASTLeaf(token);
+        } else {
+          astLeaf.left = new ASTLeaf(token);
+        }
+      } else if (token.isOperator) {
+        astLeaf.operator = token.value;
+        if (token.value === '=') {
+          isSetValueStatement = true;
+        }
+      } else if (token.isNumber) {
+        astLeaf.right = new ASTLeaf(token);
       }
+      preToken = token;
     }
-    return ret;
+  }
+  getASTree() {
+    return this.asTree;
   }
 }
 
-const parser = new Parser(sourceText);
-parser.parse();
+module.exports = Parser;
+
