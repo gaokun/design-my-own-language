@@ -1,7 +1,11 @@
 const Env = require('./environment');
 
 function Evaluate(astLeaf) {
-  return astLeaf.token.value;
+  if (astLeaf.token.isIdentifier) {
+    return Env.get(astLeaf.token.value);
+  } else {
+    return astLeaf.token.value;
+  }
 }
 
 module.exports = Evaluate;
