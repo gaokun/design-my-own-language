@@ -1,15 +1,3 @@
-const operators = [
-  '=',
-  '==',
-  '>',
-  '<',
-  '+',
-  '-',
-  '*',
-  '/',
-  '%',
-];
-
 const Token = require('./token');
 
 class OperatorToken extends Token {

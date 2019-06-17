@@ -13,7 +13,7 @@ class Environment {
   }
   get(name) {
     let value = this.map[name];
-    if (value === undefined) {
+    if (value === undefined && this._proto) {
       value = this._proto.get(name);
     }
     return value;

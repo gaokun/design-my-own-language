@@ -36,7 +36,7 @@ const parser = new Parser();
 parser.parse(lexer.tokenList);
 const asTree = parser.getASTree();
 // console.log(asTree);
-console.log(JSON.stringify(asTree, '', ' '));
+// console.log(JSON.stringify(asTree, '', ' '));
 
 Interpreter(asTree);
 

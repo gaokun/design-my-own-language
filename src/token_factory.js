@@ -8,7 +8,7 @@ module.exports = (lineNo, value, isString) => {
   }
   const numberRegex = /\d+/g;
   if (numberRegex.test(value)) {
-    return new NumberToken(lineNo, value);
+    return new NumberToken(lineNo, +value);
   }
   return new IdToken(lineNo, value);
 };
