@@ -30,8 +30,6 @@ class Parser {
           astLeaf.left = new ASTLeaf(token);
         } else if (astLeaf.operator) { // 不可能是=
           astLeaf.right = new ASTLeaf(token);
-          parentLeaf.right = astLeaf;
-          astLeaf = null;
         } else {
           astLeaf.right = new ASTLeaf(token);
         }

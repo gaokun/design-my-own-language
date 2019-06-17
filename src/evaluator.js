@@ -21,6 +21,7 @@ function Evaluate(astLeaf) {
         ret = left * right;
         break;
       case '/':
+        // console.log('/', left, right);
         ret = left / right;
         break;
       case '%':
